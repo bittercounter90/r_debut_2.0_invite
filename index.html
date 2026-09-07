@@ -2,7 +2,7 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Open Envelope</title>
     <style>
         * {
@@ -11,13 +11,19 @@
             box-sizing: border-box;
         }
 
+        /* Mengunci layar agar tidak bisa di-scroll sama sekali */
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden; /* Menghilangkan scrollbar */
+            touch-action: none; /* Mencegah efek scroll/zoom dari sentuhan jari di HP */
+        }
+
         body {
-            /* Perubahan untuk GitHub: gunakan ./assets/ */
             background-image: url('./assets/background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
-            height: 100vh;
             display: flex;
             justify-content: center;
             align-items: center;
@@ -25,26 +31,32 @@
         }
 
         .modal-container {
-            /* Perubahan untuk GitHub: gunakan ./assets/ */
             background-color: rgba(255, 255, 255, 0.9);
             background-image: url('./assets/opacity30.png');
             background-size: cover;
             background-repeat: repeat;
-            padding: 40px;
+            padding: 40px 20px; /* Padding disesuaikan untuk layar kecil */
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
-            width: 350px;
+            
+            /* Dibuat responsif: lebar 90% dari layar HP, tapi maksimal 350px di desktop */
+            width: 90%; 
+            max-width: 350px; 
             border: 1px solid rgba(255, 255, 255, 0.5);
         }
 
         .envelope-wrapper {
             background-color: #343a40;
-            width: 250px;
+            
+            /* Dibuat responsif menyesuaikan container */
+            width: 100%;
+            max-width: 250px;
             height: 200px;
+            
             display: flex;
             justify-content: center;
             align-items: flex-end;
@@ -66,6 +78,8 @@
             border-radius: 4px;
             transition: background-color 0.3s ease;
             backdrop-filter: blur(2px);
+            width: 80%; /* Lebar tombol menyesuaikan layar HP */
+            max-width: 200px;
         }
 
         .btn-open:hover {
@@ -73,8 +87,9 @@
         }
 
         .envelope-svg {
-            width: 220px;
-            height: 180px;
+            width: 100%;
+            max-width: 220px;
+            height: auto;
             transition: transform 0.3s ease;
         }
 
@@ -105,7 +120,6 @@
         <button class="btn-open" onclick="openEnvelope()">OPEN</button>
     </div>
 
-    <!-- Gunakan ./ untuk memastikan file JS terbaca di repo yang sama -->
     <script src="./database.js"></script>
     
     <script>
