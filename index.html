@@ -11,7 +11,6 @@
             box-sizing: border-box;
         }
 
-        /* Mengunci layar agar tidak bisa di-scroll sama sekali */
         html, body {
             width: 100vw;
             height: 100vh;
@@ -20,7 +19,7 @@
         }
 
         body {
-            background-image: url('./assets/background.webp');
+            background-image: url('./assets/background.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -117,15 +116,13 @@
     
     <script>
         function openEnvelope() {
-            // 1. Cek URL saat ini apakah ada ID yang dikirim (misal: index.html?id=2)
             const urlParams = new URLSearchParams(window.location.search);
             const guestId = urlParams.get('id');
 
-            // 2. Jika ada ID, bawa ID tersebut ke main.html. Jika tidak ada, default ke id=1
             if (guestId) {
                 window.location.href = "main.html?id=" + guestId;
             } else {
-                window.location.href = "main.html?id=1"; 
+                window.location.href = "main.html"; 
             }
         }
     </script>
