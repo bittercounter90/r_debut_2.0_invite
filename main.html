@@ -30,7 +30,7 @@
             background-image: url('./assets/opacity30.png');
             background-size: cover;
             width: 90%;
-            max-width: 400px; /* Ukuran dasar untuk HP */
+            max-width: 400px;
             padding: 30px 20px;
             border-radius: 8px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
@@ -38,7 +38,7 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            transition: all 0.3s ease; /* Transisi halus saat resize layar */
+            transition: all 0.3s ease;
         }
 
         /* === TYPOGRAPHY === */
@@ -112,42 +112,26 @@
             color: #555;
         }
 
-        /* === BUTTONS === */
-        .button-group {
-            display: flex;
-            gap: 15px;
-            width: 100%;
-            justify-content: center;
-        }
-
-        .btn {
-            padding: 12px 30px;
+        /* === SINGLE BUTTON DENGAN ANIMASI === */
+        .btn-next {
+            background-color: #1e88e5; /* Default: Biru */
+            color: white;             /* Default: Teks Putih */
+            border: 2px solid #1e88e5;
+            padding: 12px 0;
             font-size: 14px;
             font-weight: bold;
             cursor: pointer;
             border-radius: 4px;
-            width: 120px;
-            transition: all 0.3s ease;
+            width: 100%;
+            max-width: 200px;
+            transition: all 0.3s ease; /* Transisi halus untuk animasi */
         }
 
-        .btn-primary {
-            background-color: #1e88e5;
-            color: white;
-            border: none;
-        }
-
-        .btn-primary:hover {
-            background-color: #1565c0;
-        }
-
-        .btn-outline {
-            background-color: transparent;
-            color: #1e88e5;
-            border: 1px solid #1e88e5;
-        }
-
-        .btn-outline:hover {
-            background-color: #f1f8ff;
+        /* Animasi saat di-hover atau ditekan (active) */
+        .btn-next:hover, 
+        .btn-next:active {
+            background-color: white;   /* Berubah jadi Putih */
+            color: #1e88e5;           /* Teks berubah jadi Biru */
         }
 
         /* =========================================
@@ -155,36 +139,36 @@
            ========================================= */
         @media (min-width: 768px) {
             .invitation-card {
-                max-width: 550px; /* Melebarkan box di web */
+                max-width: 550px;
                 padding: 40px 30px;
             }
             .title {
-                font-size: 32px; /* Membesarkan judul */
+                font-size: 32px;
             }
             .subtitle {
                 font-size: 20px;
                 margin-bottom: 25px;
             }
             .image-placeholder {
-                width: 200px; /* Membesarkan kotak gambar */
+                width: 200px;
                 height: 200px;
             }
             .guest-box {
-                font-size: 24px; /* Membesarkan nama tamu */
+                font-size: 24px;
                 padding: 20px;
             }
             .event-phase {
                 font-size: 24px;
             }
             .countdown-value {
-                font-size: 36px; /* Membesarkan angka jam */
+                font-size: 36px;
             }
             .countdown-label {
                 font-size: 14px;
             }
-            .btn {
-                width: 150px; /* Membesarkan tombol */
-                padding: 15px 30px;
+            .btn-next {
+                max-width: 250px;
+                padding: 15px 0;
                 font-size: 16px;
             }
         }
@@ -211,6 +195,9 @@
         <div>You have been invited to</div>
         <div class="event-phase">Meowtiverse Phase 2</div>
 
+        <!-- =========================================
+             INI BUAT NGATUR COUNTDOWN
+             ========================================= -->
         <div class="countdown-container">
             <div class="countdown-item">
                 <div class="countdown-value" id="days">00</div>
@@ -233,10 +220,8 @@
             </div>
         </div>
 
-        <div class="button-group">
-            <button class="btn btn-primary">NEXT</button>
-            <button class="btn btn-outline">NEXT</button>
-        </div>
+        <!-- 1 Tombol Next dengan Animasi Hover/Click -->
+        <button class="btn-next" onclick="handleNext()">NEXT</button>
     </div>
 
     <script src="./database.js"></script>
@@ -254,7 +239,7 @@
             }
         }
 
-        // INI BUAT NGATUR COUNTDOWN
+        // FUNGSI COUNTDOWN (Menuju tanggal 1 bulan depan)
         function initCountdown() {
             const now = new Date();
             const targetDate = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0);
@@ -284,6 +269,12 @@
 
             setInterval(updateTimer, 1000);
             updateTimer(); 
+        }
+
+        // Fungsi saat tombol NEXT ditekan
+        function handleNext() {
+            console.log("Tombol Next diklik!");
+            // Tambahkan logika selanjutnya di sini jika diperlukan (misal pindah halaman)
         }
 
         window.onload = function() {
