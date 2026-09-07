@@ -271,12 +271,16 @@
             updateTimer(); 
         }
 
-        // Fungsi saat tombol NEXT ditekan
-        function handleNext() {
-            console.log("Tombol Next diklik!");
-            // Tambahkan logika selanjutnya di sini jika diperlukan (misal pindah halaman)
-        }
+       function handleNext() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const guestId = urlParams.get('id');
 
+    if (guestId) {
+        window.location.href = "end.html?id=" + guestId;
+    } else {
+        window.location.href = "end.html";
+    }
+}
         window.onload = function() {
             loadGuestName();
             initCountdown();
