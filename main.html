@@ -209,23 +209,11 @@
         <button class="btn-next" onclick="handleNext()">NEXT</button>
     </div>
 
-    <script src="./database.js"></script>
-
+   <script src="./database.js"></script>
     <script>
-        function loadGuestName() {
-            const urlParams = new URLSearchParams(window.location.search);
-            const guestId = urlParams.get('id');
+        function loadGuestName(guestId) {
             const displayElement = document.getElementById('guestNameDisplay');
-
-            if (guestId && guestDatabase[guestId]) {
-                displayElement.textContent = guestDatabase[guestId];
-                displayElement.style.color = "#333";
-                displayElement.style.borderColor = "#3498db";
-            } else {
-                displayElement.textContent = "Not Invited / Tidak Terdaftar"; 
-                displayElement.style.color = "#e74c3c"; 
-                displayElement.style.borderColor = "#e74c3c"; 
-            }
+            displayElement.textContent = guestDatabase[guestId];
         }
 
         function initCountdown() {
@@ -262,17 +250,23 @@
         function handleNext() {
             const urlParams = new URLSearchParams(window.location.search);
             const guestId = urlParams.get('id');
-
-            if (guestId) {
-                window.location.href = "end.html?id=" + guestId;
-            } else {
-                window.location.href = "end.html";
-            }
+            window.location.href = "end.html?id=" + guestId;
         }
 
         window.onload = function() {
-            loadGuestName();
-            initCountdown();
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestId = urlParams.get('id');
+
+            // Cek apakah ID ada di URL dan terdaftar di database
+            if (guestId && guestDatabase[guestId]) {
+                loadGuestName(guestId);
+                initCountdown();
+            } else {
+                // JIKA TIDAK VALID: Ubah jadi blank page putih
+                document.body.innerHTML = "";
+                document.body.style.background = "none";
+                document.body.style.backgroundColor = "white"; 
+            }
         };
     </script>
 </body>
