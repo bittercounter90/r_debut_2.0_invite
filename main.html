@@ -5,7 +5,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Debut Invitation</title>
     <style>
-        /* === RESET & BASE STYLES === */
         * {
             margin: 0;
             padding: 0;
@@ -14,7 +13,7 @@
         }
 
         body {
-            background-image: url('./assets/background.webp');
+            background-image: url('./assets/background.png');
             background-size: cover;
             background-position: center;
             height: 100vh;
@@ -24,7 +23,6 @@
             overflow: hidden; 
         }
 
-        /* === MAIN CARD CONTAINER === */
         .invitation-card {
             background-color: white;
             background-image: url('./assets/opacity30.png');
@@ -41,7 +39,6 @@
             transition: all 0.3s ease;
         }
 
-        /* === TYPOGRAPHY === */
         .title {
             font-size: 22px;
             font-weight: bold;
@@ -59,7 +56,6 @@
             margin: 5px 0 20px 0;
         }
 
-        /* === IMAGE PLACEHOLDER === */
         .image-placeholder {
             width: 150px;
             height: 150px;
@@ -73,7 +69,6 @@
             background-color: #f8f9fa;
         }
 
-        /* === GUEST NAME BOX === */
         .guest-box {
             width: 80%;
             padding: 15px;
@@ -89,7 +84,6 @@
             align-items: center;
         }
 
-        /* === COUNTDOWN STYLES === */
         .countdown-container {
             display: flex;
             gap: 15px;
@@ -112,10 +106,9 @@
             color: #555;
         }
 
-        /* === SINGLE BUTTON DENGAN ANIMASI === */
         .btn-next {
-            background-color: #1e88e5; /* Default: Biru */
-            color: white;             /* Default: Teks Putih */
+            background-color: #1e88e5; 
+            color: white;             
             border: 2px solid #1e88e5;
             padding: 12px 0;
             font-size: 14px;
@@ -124,19 +117,15 @@
             border-radius: 4px;
             width: 100%;
             max-width: 200px;
-            transition: all 0.3s ease; /* Transisi halus untuk animasi */
+            transition: all 0.3s ease; 
         }
 
-        /* Animasi saat di-hover atau ditekan (active) */
         .btn-next:hover, 
         .btn-next:active {
-            background-color: white;   /* Berubah jadi Putih */
-            color: #1e88e5;           /* Teks berubah jadi Biru */
+            background-color: white;   
+            color: #1e88e5;           
         }
 
-        /* =========================================
-           TWEAK KHUSUS UNTUK LAYAR PC/LAPTOP (WEB)
-           ========================================= */
         @media (min-width: 768px) {
             .invitation-card {
                 max-width: 550px;
@@ -195,9 +184,6 @@
         <div>You have been invited to</div>
         <div class="event-phase">Meowtiverse Phase 2</div>
 
-        <!-- =========================================
-             INI BUAT NGATUR COUNTDOWN
-             ========================================= -->
         <div class="countdown-container">
             <div class="countdown-item">
                 <div class="countdown-value" id="days">00</div>
@@ -220,7 +206,6 @@
             </div>
         </div>
 
-        <!-- 1 Tombol Next dengan Animasi Hover/Click -->
         <button class="btn-next" onclick="handleNext()">NEXT</button>
     </div>
 
@@ -234,12 +219,15 @@
 
             if (guestId && guestDatabase[guestId]) {
                 displayElement.textContent = guestDatabase[guestId];
+                displayElement.style.color = "#333";
+                displayElement.style.borderColor = "#3498db";
             } else {
-                displayElement.textContent = "Tamu Spesial"; 
+                displayElement.textContent = "Not Invited / Tidak Terdaftar"; 
+                displayElement.style.color = "#e74c3c"; 
+                displayElement.style.borderColor = "#e74c3c"; 
             }
         }
 
-        // FUNGSI COUNTDOWN (Menuju tanggal 1 bulan depan)
         function initCountdown() {
             const now = new Date();
             const targetDate = new Date(now.getFullYear(), now.getMonth() + 1, 1, 0, 0, 0);
@@ -271,16 +259,17 @@
             updateTimer(); 
         }
 
-       function handleNext() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const guestId = urlParams.get('id');
+        function handleNext() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const guestId = urlParams.get('id');
 
-    if (guestId) {
-        window.location.href = "end.html?id=" + guestId;
-    } else {
-        window.location.href = "end.html";
-    }
-}
+            if (guestId) {
+                window.location.href = "end.html?id=" + guestId;
+            } else {
+                window.location.href = "end.html";
+            }
+        }
+
         window.onload = function() {
             loadGuestName();
             initCountdown();
