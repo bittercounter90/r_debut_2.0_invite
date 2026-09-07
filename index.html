@@ -123,9 +123,11 @@
     <script src="./database.js"></script>
     
     <script>
-        function openEnvelope() {
-            console.log("Mencoba membuka surat...");
-        }
+       function openEnvelope() {
+    // Arahkan ke main.html dengan membawa parameter ID = 1
+    // Nanti akan menampilkan "Andi Wijaya" sesuai di database.js
+    window.location.href = "main.html?id=1"; 
+}
     </script>
 </body>
 </html>
