@@ -73,12 +73,11 @@
             border-bottom: 3px solid #1e88e5;
             padding-bottom: 2px;
             margin-bottom: 12px;
-            background-color: rgba(255, 255, 255, 0.9); /* Efek stabilo judul */
+            background-color: rgba(255, 255, 255, 0.9); 
             padding: 2px 5px;
             border-radius: 3px;
         }
 
-        /* Efek stabilo putih khusus untuk teks paragraf */
         .stabilo-putih {
             background-color: rgba(255, 255, 255, 0.95);
             padding: 2px 4px;
@@ -90,13 +89,15 @@
             -webkit-box-decoration-break: clone;
         }
 
+        /* DITAMBAH 2PX (Awalnya 13px -> 15px) */
         .section-text {
-            font-size: 13px;
+            font-size: 15px;
             margin-bottom: 12px;
         }
 
+        /* DITAMBAH 2PX (Awalnya 13px -> 15px) */
         .section-datetime {
-            font-size: 13px;
+            font-size: 15px;
             margin-bottom: 15px;
         }
 
@@ -148,7 +149,8 @@
         @media (min-width: 768px) {
             .invitation-card { max-width: 550px; padding: 40px 30px; }
             .section-title { font-size: 26px; margin-bottom: 15px; }
-            .section-text, .section-datetime { font-size: 15px; }
+            /* DITAMBAH 2PX UNTUK LAYAR PC (Awalnya 15px -> 17px) */
+            .section-text, .section-datetime { font-size: 17px; }
             .img-placeholder { width: 100px; height: 100px; }
             .btn-link { font-size: 15px; padding: 10px 15px; }
         }
@@ -163,7 +165,6 @@
             <div class="section-content">
                 <div class="section-title">Date & Place</div>
                 
-                <!-- Teks dibungkus <span> dengan class stabilo-putih -->
                 <p class="section-text">
                     <span class="stabilo-putih">See you in the Meowtiverse! Don't be late, or the cat might smash his desk again.</span>
                 </p>
@@ -195,7 +196,6 @@
             <div class="section-content">
                 <div class="section-title">Message & Gift</div>
                 
-                <!-- Teks dibungkus <span> dengan class stabilo-putih -->
                 <p class="section-text">
                     <span class="stabilo-putih">Got any heartfelt messages, spicy roasts, or first impressions you want to throw at Rucus? If you also have any digital gifts to drop, feel free to submit them here.</span>
                 </p>
